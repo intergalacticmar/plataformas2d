@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class Player : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class Player : MonoBehaviour
 
     private Rigidbody2D _rBody2D;
     private Animator _animator;
+    private PlayableDirector _director;
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +34,11 @@ public class Player : MonoBehaviour
        if(Input.GetButtonDown("Jump") && GroundSensor._isGrounded)
        {
         Jump();
+       }
+
+       if(Input.GetButtonDown("Fire2"))
+       {
+        _director.Play();
        }
     }
 
