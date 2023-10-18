@@ -17,8 +17,10 @@ public class Player : MonoBehaviour
     private Rigidbody2D _rBody2D;
     private Animator _animator;
     private PlayableDirector _director;
+    private SpriteRenderer _renderer;
 
     // Start is called before the first frame update
+
     void Start()
     {
         _rBody2D = GetComponent<Rigidbody2D>();
@@ -45,6 +47,7 @@ public class Player : MonoBehaviour
     void Jump()
     {
         _rBody2D.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
+        _animator.SetBool("IsJumping", true);
     }
 
     void FixedUpdate() 
@@ -57,16 +60,26 @@ public class Player : MonoBehaviour
     {
         _playerInputHorizontal = Input.GetAxis ("Horizontal");
 
-        if(_playerInputHorizontal != 0 )
+        if(_playerInputHorizontal < 0)
+        {
+          //  _renderer.flipX = true;
+          transform.rotation = Quaternion.Euler(0, 180, 0);
+          _animator.SetBool("IsRunning", true);
+        }
+        else if(_playerInputHorizontal > 0)
+        {
+           // _renderer.flipX = false;
+           transform.rotation = Quaternion.Euler(0, 0, 0);
+            _animator.SetBool("IsRunning", true);
+        }
+
+        else(_playerInputHorizontal = 0)
         {
             _animator.SetBool("IsRunning", true);
         }
 
-         if(_playerInputHorizontal == 0 )
-        {
-            _animator.SetBool("IsRunning", false);
+
         }
         /*_playerInputVertical = Input.GetAxis ("Vertical");
         transform.Translate(new Vector2(_playerInputHorizontal, _playerInputVertical) * _playerSpeed * Time.deltaTime);*/
     }
-}
