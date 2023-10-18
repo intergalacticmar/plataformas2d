@@ -73,7 +73,7 @@ public class Player : MonoBehaviour
             _animator.SetBool("IsRunning", true);
         }
 
-        else(_playerInputHorizontal = 0)
+        else
         {
             _animator.SetBool("IsRunning", true);
         }
@@ -82,4 +82,9 @@ public class Player : MonoBehaviour
         }
         /*_playerInputVertical = Input.GetAxis ("Vertical");
         transform.Translate(new Vector2(_playerInputHorizontal, _playerInputVertical) * _playerSpeed * Time.deltaTime);*/
+
+       public void SignalTest()
+        {
+            Debug.Log("Señal recibida");
+        }
     }
