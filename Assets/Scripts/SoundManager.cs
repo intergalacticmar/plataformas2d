@@ -15,7 +15,7 @@ public class SoundManager : MonoBehaviour
     {
         if (instance != null && instance  != this)
         {
-            Destroy(this.gameObject)
+            Destroy(this.gameObject);
         }
         else
         {
@@ -24,14 +24,9 @@ public class SoundManager : MonoBehaviour
 
         _sfxAudioSource = GetComponent<AudioSource>();
     }
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     
-    public void DeathSound()
-    {
-        _sfxAudioSource.PlayOneShoot();
-    }
+ //   public void DeathSound()
+   // {
+  //      _sfxAudioSource.PlayOneShoot(DeathSound);
+  //  }
 }
